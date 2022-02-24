@@ -11,9 +11,18 @@ export const Wrapper = styled.div`
 `;
 
 export const Boards = styled.div`
-  display: grid;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   width: 100%;
-  grid-template-columns: repeat(1, 1fr);
+  gap: 10px;
+`;
+
+export const Title = styled.h2`
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 18px;
 `;
 
 export const Board = styled.div`
