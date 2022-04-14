@@ -12,8 +12,9 @@ function App() {
     if (destination?.droppableId === source.droppableId) {
       setToDos((prevBoards) => {
         const copiedBoard = [...prevBoards[source.droppableId]];
+        const taskObj = copiedBoard[source.index];
         copiedBoard.splice(source.index, 1);
-        copiedBoard.splice(destination?.index, 0, draggableId);
+        copiedBoard.splice(destination?.index, 0, taskObj);
         return {
           ...prevBoards,
           [source.droppableId]: copiedBoard,
@@ -24,9 +25,10 @@ function App() {
       // 다른 보드 간의 움직임
       setToDos((prevBoards) => {
         const sourceBoard = [...prevBoards[source.droppableId]];
+        const taskObj = sourceBoard[source.index];
         const destinationBoard = [...prevBoards[destination.droppableId]];
         sourceBoard.splice(source.index, 1);
-        destinationBoard.splice(destination?.index, 0, draggableId);
+        destinationBoard.splice(destination?.index, 0, taskObj);
         return {
           ...prevBoards,
           [source.droppableId]: sourceBoard,

@@ -1,21 +1,25 @@
 import React from "react";
-import { Card } from "./styled";
 import { Draggable } from "react-beautiful-dnd";
+import * as Styled from "./styled";
 
 interface IDraggableCardProps {
-  toDo: string;
+  toDoId: number;
+  toDoText: string;
   index: number;
 }
 
-function index({ toDo, index }: IDraggableCardProps) {
-  console.log(toDo, "rendered");
+function index({ toDoId, index, toDoText }: IDraggableCardProps) {
   return (
-    <Draggable key={toDo} draggableId={toDo} index={index}>
-      {(provided) => (
-        <Card ref={provided.innerRef} {...provided.draggableProps}>
-          <span {...provided.dragHandleProps}>🛹</span>
-          {toDo}
-        </Card>
+    <Draggable key={toDoId} draggableId={toDoId + ""} index={index}>
+      {(provided, snapshot) => (
+        <Styled.Card
+          ref={provided.innerRef}
+          isDragging={snapshot.isDragging}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          {toDoText}
+        </Styled.Card>
       )}
     </Draggable>
   );
